@@ -5,7 +5,7 @@ import validationMiddleware from '@/middleware/validation.middleware';
 import validate from '@/resources/property/property.validation';
 import * as propertyService from '@/resources/property/property.service';
 
-class PropertyController implements Controller {
+export default class PropertyController implements Controller {
   public path = '/properties';
   public router = Router();
 
