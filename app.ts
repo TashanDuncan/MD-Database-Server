@@ -15,11 +15,17 @@ class App {
     this.express = express();
     this.port = port;
 
+    this.initaliseDatabaseConnection();
     this.initialiseMiddleware();
     this.initialiseControllers(controllers);
     this.initialiseErrorHandling();
   }
 
+  private initaliseDatabaseConnection(): void {
+    const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
+
+    mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+  }
   private initialiseMiddleware(): void {
     this.express.use(morgan('combined'));
     this.express.use(helmet());
